@@ -1,497 +1,693 @@
-// "use strict";
+// const string = "script";
+// const first = string[0];
+// // string[0] = "p";  // не працює
+// console.log(string);
 
-// // Оголошення змінних
+// const clients = ["Mango", "Poly", "Ajax"];
+// console.log(clients[0]);
+// clients[0] = "Kiwi";
+// console.log(clients);
 
-// const a = "variable"; // ініціалізуємо завжди зі значенням
-// a = "new variable"; // отримаємо в консолі TypeError, адже переприсвоювати значення змінним, оголошеним через const, не можна. Важливо: якщо цей пядок не закоментувати, скрипт запнеться на помилці і далі не виконуватиметься.
-// let b; // може ініціалізувати юез присвоєння значення;
-// b = "one more variable"; // значення може бути присвоєно пізніше, після ініціалізації;
-
-// // Взаємодія з користувачем
-
-// // - виведення даних:
-
-// console.log("Hello!");
-// alert("Hello!");
-
-// // - отримання даних:
-
-// confirm("Is your name Ivan?"); // користувач може відповісти так  або відхилити питання
-// prompt("What is your name?"); // користувач  може ввест якісь дані або відхилити питання
-
-// // Оператори порівняння (<, >, <=, >=, ==, ===, !=, !==)
-
-// //Загальні правила порівняння
-// // Результатом порівняння буде бульове значення.
-// // При порівнянні різних типів, операнди наводяться до числа (за винятком порівняння  з використанням операторів ===, !==)
-// //  null не дорівнює нічому крім себе та undefined.
-// //  undefined не дорівнює нічому крім себе та null.
-// // Рядки між собою порівнюються за unicode (посимвольно).
-
-// //   Правила приведення різних типів до числа:
-// //   true --> 1
-// //   false --> 0
-// //   '' --> 0
-// //   null --> 0
-// // undefined --> NaN
-// // не порожній рядок --> якщо рядок складається лише з цифр, відбувається приведення до числа. В іншому випадку - NaN.
-
-// //  Оператор <=
-// console.log(4 <= 6); // true
-// console.log(5 <= 5); // true
-// console.log(5 <= 4); // false
-
-// // Оператор >=
-// console.log(5 >= 3); //true
-// console.log(5 >= 5); //true
-// console.log(3 >= 4); // false
-
-// // Оператор ==
-// console.log(null > 0); // false
-// console.log(null == 0); // false
-// console.log(null >= 0); // true
-// console.log(undefined == 0); //false
-// console.log(undefined == null); //true
-// console.log(undefined === null); //false
-// console.log("123" == 123); // true
-// console.log(true == "1"); // true
-// console.log(4 == 5); //false
-
-// // Оператор ===
-// console.log("123" === 123); //false
-// console.log(null === null); //true
-// console.log(2 + 2 === 4); //true
-
-// // Оператор !=
-// console.log("4" != 4); //false
-
-// // Оператор !==
-// console.log("4" !== 4); // true
-
-// //  Логічні операторы (&&,  ||,  !)
-
-// // У логічних операціях  відбуваєтьмя приведення типів операндів до true або false.
-
-// // (falsy) значення, що приводяться до false у логічному перетворенні:
-// // 0
-// // NaN
-// // null
-// // undefined
-// // порожній рядок
-// // false.
-// // Абсолютно все інше приводиться до true.
-
-// // && - запинається на false
-// // Якщо всі операнди були приведені до true, повертається остання.
-// // Якщо результат приведення операнди до буля false, перевірка зупиняється та повертається вихідне значення цього операнда.
-
-// // || - запинається на true
-// // Повертає перше правидиве (приведене до true) значення або останнє, якщо таке truthy значення не знайдено.
-
-// // ! - інвертує true в false, або false в true
-
-// console.log(true && 3); // 3
-// console.log(false && 3); // false
-// console.log(false && false); //false
-// console.log(true && 4 && "kiwi"); // 'kiwi'
-// console.log(true && "" && "kiwi"); // ''
-// console.log(true && " " && "kiwi"); // ''
-// console.log(true && 0 && "kiwi"); // 0
-// console.log(true || 3); // true
-// console.log(true || 3 || 4); //true
-// console.log(true || false || 7); //true
-// console.log(false || true || 7); //true
-// console.log(null || 2 || undefined); //2
-// console.log((1 && null && 2) > 0); // false
-// console.log(null || (2 && 3) || 4); //3
-// console.log(null || (null && 3) || 4); // 4
-
-// // Операції з приведенням типів
-
-// console.log(2 + 5 + "" + 1 + 0 - 10); // '700'
-// console.log("" + 1 - 0); // 1
-// console.log(true + false); // 1
-// console.log(true + ""); // 'true'
-// console.log(true + "false"); // 'truefalse'
-// console.log(true - "false"); // NaN
-// console.log(6 / "3"); // 2
-// console.log("2" * "3"); // 6
-// console.log(4 + 5 + "px"); //'9px'
-// console.log("$" + 4 + 5); //'$45'
-// console.log("4" - 2); // 2
-// console.log("4" + 2); // '42'
-// console.log("4" / 2); // 2
-// console.log("4px" - 2); // NaN
-// console.log(7 / 0); // Infinity
-// console.log("  -9  " + 5); // ' -9 5'
-// console.log(!null + 1); // 2
-
-// const a = 123;
-// const b = "qwerty";
-
-// console.log(Number.isNaN(a)); //false
-// console.log(Number.isNaN(b)); //false
-
-// const toNumber = Number(b);
-// console.log(toNumber); //NaN
-// console.log(Number.isNaN(toNumber)); //true
-// console.log(!Number.isNaN(toNumber)); //false
-
-// const data = prompt("Enter a number, please");
-// console.log(data);
-
-// const dataToNumber = Number.parseInt(data);
-// console.log(dataToNumber);
-
-// const isNaN = Number.isNaN(dataToNumber);
-// console.log(isNaN);
-
-// const isNumber = !Number.isNaN(dataToNumber);
-// console.log(isNumber);
-
-// const num1 = 0.1;
-// const num2 = 0.2;
-// const sum1 = num1 + num2;
-// console.log(sum1.toFixed(3));
-// const fixedSum1 = Number(sum1.toFixed(3));
-// console.log(sum1);
-// console.log(fixedSum1);
-
-// const num3 = 0.3;
-// const num4 = 0.6;
-// const sum2 = num3 + num4;
-// console.log(sum2.toFixed(3));
-// const fixedSum2 = Number(sum2.toFixed(3));
-// console.log(sum2);
-// console.log(fixedSum2);
-
-// // Повернення рандомного числа в заданому діапазоні (від min, включаючи min, до max, не включаючи max)
-// const min1 = 5;
-// const max1 = 10;
-// const randomNumber1 = Math.random() * (max1 - min1) + min1;
-// console.log(randomNumber1);
-
-// // Повернення рандомного числа в заданому діапазоні (від min, включаючи min, до max, не включаючи max)
-// const min2 = Math.ceil(5);
-// const max2 = Math.floor(10);
-// const randomNumber2 = Math.floor(Math.random() * (max2 - min2) + min2);
-// console.log(randomNumber2);
-
-// // Повернення рандомного числа в заданому діапазоні (від min, включаючи min, до max, включаючи max)
-// const min3 = Math.ceil(5);
-// const max3 = Math.floor(10);
-// const randomNumber3 = Math.floor(Math.random() * (max3 - min3 + 1) + min3);
-// console.log(randomNumber3);
-
-// const userName = "Ivan";
-// const age = "60";
-
-// const message = `My name is ${userName} , I'm ${age} years old`;
-// console.log(message);
-
-// const word1 = "     ";
-// console.log(Number(word1)); // 0
-// console.log(word1.length); //5
-
-// const word2 = "hTMl";
-// console.log(word2.toLowerCase()); //html
-// console.log(word2.toUpperCase()); //HTML
-
-// const word3 = "superjavascript";
-// const substring1 = "java";
-// const substring2 = "css";
-
-// console.log(word3.indexOf(substring1)); // 5
-// console.log(word3.indexOf(substring2)); // -1
-
-// const word4 = "banana";
-// console.log(word4.indexOf("a")); // 1
-// console.log(word4.lastIndexOf("a")); // 5
-// console.log(word4.indexOf("n")); // 2
-// console.log(word4.lastIndexOf("n")); // 4
-
-// const sentense = "two tasty bananas";
-// console.log(sentense.indexOf(" ")); // 3
-// console.log(sentense.indexOf("tasty bananas")); // 4
-
-// console.log(word3.includes(substring1)); // true
-// console.log(word3.includes("Java")); //  false
-// console.log(word3.includes(substring2)); // false
-
-// const word5 = "javascript";
-// const word6 = word5.slice(0, 4);
-// console.log(word6); //java
-// const word7 = word5.slice(4, 10);
-// console.log(word7); // script
-// const word8 = word5.slice(4, word5.length);
-// console.log(word8); // script
-// const word9 = word5.slice(4);
-// console.log(word9); // script
-// const word10 = word5.slice(-6);
-// console.log(word10);
-// const word11 = "     cake     ";
-// console.log(word11.trim());
-
-// const number1 = Number(prompt("Enter a number, please"));
-// console.log(number1);
-// const number2 = Number(prompt("Enter a number, please"));
-// console.log(number2);
-
-// if (number1 > number2) {
-//   console.log("were are here");
+// const numberArray = [1, 3, 5, 7, 9, 10, 11, 12, 15];
+// for (let i = 0; i < numberArray.length; i += 1) {
+//   console.log(numberArray[i]);
 // }
 
-// if (number1 > number2) {
-//   console.log("+");
-// } else {
-//   console.log("-");
+// for (const number of numberArray) {
+//   console.log(number);
 // }
 
-// if (number1 > number2) {
-//   console.log(">");
-// } else if (number1 === number2) {
-//   console.log("=");
-// } else {
-//   console.log("<");
-// }
-
-// if (number1 > number2) {
-//   console.log(">");
-// } else {
-//   if (number1 === number2) {
-//     console.log("=");
-//   } else {
-//     console.log("<");
+// for (const number of numberArray) {
+//   // console.log(number);
+//   if (number === 0 || number === 10) {
+//     console.log(true, number);
+//     break;
 //   }
 // }
 
-// if (number1 > number2) {
-//   console.log(">");
-// } else if (number1 === number2) {
-//   console.log("=");
-// }
+// const a = [0, 2];
+// console.log(a[0] || a[1]);
 
-// if (number1 === 5) {
-//   console.log(5);
-// } else if (number1 === 10) {
-//   console.log(10);
-// } else if (number1 === 20) {
-//   console.log(20);
-// } else {
-//   console.log("no");
-// }
+// let a = 1;
+// let b = a;
+// console.log(b);
+// a = 2;
+// b = a;
+// console.log(b);
 
-// if (number1 > 50 && number2 > 50) {
-//   console.log("super");
-// }
+// const array1 = [1, 2, 3];
+// const array2 = array1;
+// const array3 = array2;
+// // console.log(array2);
 
-// const number1 = 10;
-// number1 > 20 ? console.log("true") : console.log("false"); // 'false'
-// const number2 = 30;
-// number2 > 20 ? console.log("true") : console.log("false"); // 'true''
+// array1.push(5);
+// // console.log(array1);
+// // console.log(array2);
+// array2.push(10);
 
-// const number3 = 10;
-// number3 > 20
-//   ? console.log(">")
-//   : number3 === 20
-//   ? console.log("=")
-//   : console.log("<"); // так робити НЕ ТРЕБА, бо буде боляче
+// // console.log(array2);
+// // console.log(array1);
+// // console.log(array3);
+// array3.push(20);
+// // console.log(array1);
+// // console.log(array2);
+// const array4 = [7, 8, 9];
+// array4.push(30);
 
-// const number = Number(prompt("Enter a number between 0 and 3"));
+// const array1 = [1, 2, 3];
+// let array2 = array1;
 
-// switch (number) {
-//   case 0:
-//     console.log("Your entered 0");
-//     break;
+// // console.log(array1);
+// // console.log(array2);
 
-//   case 1:
-//     console.log("Your entered 1");
-//     break;
+// array2 = [8, 9, 10];
+// array1.push(100);
+// // array2 = array1;
 
-//   case 2:
-//     console.log("Your entered 2");
-//     break;
+// // console.log(array1);
+// // console.log(array2);
 
-//   case 3:
-//     console.log("Your entered 3");
-//     break;
+// const array3 = array2;
 
-//   default:
-//     console.log("Your entered another number");
-// }
+// // console.log(array3);
+// array1.push(300);
 
-// if (number === 0) {
-//   console.log("Your entered 0");
-// } else if (number === 1) {
-//   console.log("Your entered 1");
-// } else if (number === 2) {
-//   console.log("Your entered 2");
-// } else if (number === 3) {
-//   console.log("Your entered 3");
-// } else {
-//   console.log("Your entered another number");
-// }
-
-// const variable = 123;
-
-// if (2 > 1) {
-//   console.log(variable);
-// }
-
-// глобальна область видимості
-
-// if (2 > 1) {
-//   // блочна область видимості 1
-//   const variable2 = 123;
-//   console.log(variable2);
-//   // console.log(variable3);
-//   if (4 > 3) {
-//     // блочна область видимості 2
-//     const variable3 = 456;
-//     console.log(variable3);
-//   }
-// }
-
-// console.log(variable2);
-
-// let counter = 1;
-
-// while (counter <= 5) {
-//   console.log("counter: ", counter);
-//   // counter = counter + 1
-//   counter += 1;
-// }
-
-// console.log("next");
-
-// let number;
-
-// do {
-//   console.log("here");
-//   number = Number(prompt("Введіть число, яке більше 100"));
-// } while (number < 100);
-
-// console.log(number);
-
-// let counter = 1;
-
-// do {
-//   console.log(counter);
-//   counter += 1;
-// } while (counter < 5);
-
-// const num = 10;
-// const num2 = 50;
-
-// for (let i = num; i <= num2; i += 10) {
-//   console.log(i);
-// }
-
-// let word = "";
-
-// for (let i = 0; i < 10; i += 1) {
-//   console.log("previous string", word);
-//   console.log(i);
-//   word = word + i;
-//   console.log("next string", word);
-// }
-
-// console.log("final string", word);
+// console.log(array3);
 
 // const word = "javascript";
-// let word2 = "";
-// // console.log(word[5])
+// const message = "javascript is the best programming language";
+// const array1 = word.split("");
+// console.log(array1);
+// const array2 = message.split("i");
+// console.log(array2);
 
-// for (let i = 0; i < word.length; i += 1) {
-//   // word2 = word2 + word[i];
-//   word2 += word[i];
-//   console.log(word2);
+// const array3 = [3, 5, 7, 8, 9, 7, 6, 7, 5, 7, 3, 7];
+// // const text = array3.join("");
+// // console.log(text);
+// // console.log(array3.indexOf(7));
+// let counter = 0;
+// for (const number of array3) {
+//   if (number === 7) {
+//     counter += 1;
+//   }
 // }
+// console.log(counter);
 
-// console.log(word2);
+// const clients = ["Mango", "Ajax", "Poly", "Kiwi", 6, 0];
+// console.log(clients.includes("6")); // false
 
-// const a = "123";
-// const b = Number(a);
-// const c = +a;
+// const array1 = [1, 2, 3];
+// // const var1 = array1.push(5);
+// // console.log(var1);
+// const var2 = array1.pop();
+// console.log(array1);
 
-// console.log(a);
-// console.log(b);
+// const array2 = [1, 2, 3, 4, 5];
+// // const var3 = array2.slice(0, 2);
+// // console.log(var3);
+
+// const array3 = [6, 7, 8];
+// const array5 = [9, 10];
+// const number = 11;
+// const letter = "2";
+
+// const array4 = array2.concat(array3, array5, number, letter);
+
+// console.log(array4);
+
+// const a = [1, 2, 3, 4, 5];
+// const c = a.slice();
+// const b = c.splice(2, 2);
 // console.log(c);
 
-// const number = 12345;
-// // 54321
-// const string = String(number); // '12345'
-// let reverseString = "";
-// // const string = number + "";
+// const a = [1, 2, 3, 6, 7];
+// const b = a.splice(3, 0, 4, 5);
+// console.log(b); // []
 
-// for (let i = string.length - 1; i >= 0; i -= 1) {
-//   // console.log(i);
-//   // console.log("previous string", reverseString);
-//   reverseString = reverseString + string[i];
-//   // console.log("next string", reverseString);
+// const a = [1, 2, 3, 6, 7];
+// const b = a.splice(2, 2, 0, 0, 0, 0 ,10);
+// console.log(b);
+
+// function add(num1, num2, num3) {
+//   console.log(num3);
+//   //   const sum = num1 + num2;
+//   //   return sum;
+//   return num1 + num2;
 // }
 
-// console.log(Number(reverseString));
+// add(1, 2); // 3
+// // add(10, 47); // 57
+// // add(100, 200); // 300
 
-// for (let i = 0; i <= 5; i += 1) {
-//   console.log(i);
+// function check(array, number) {
+//   return array.includes(number);
+// }
 
-//   if (i === 3) {
-//     console.log("Знайшли число 3, перериваємо виконання циклу");
-//     break;
+// console.log(check([1, 2, 3], 2));
+// console.log(check(2, [1, 2, 3])); // error
+// console.log(check([1, 2, 3], 2, "a", 5, 6, 8));
+
+// function check(array, number) {
+//   const result = array.includes(number);
+//   return result;
+// }
+
+// // console.log(check([1, 2, 3], 2));
+
+// function add(num1 = 0, num2 = 1, num3 = 0) {
+//   const sum = num1 + num2 + num3;
+//   console.log(sum);
+//   return sum;
+// }
+
+// add();
+
+// function add(num1 = 0, num2 = 1, num3 = 0) {
+//   const sum = num1 + num2 + num3;
+//   return sum;
+// }
+
+// const num2 = 10;
+
+// console.log(add(5, num2));
+
+// function add() {
+//   let sum = 0;
+//   console.log(arguments);
+//   //   const b = arguments.includes(3);
+//   //   console.log(b); // error
+//   const array = Array.from(arguments);
+//   console.log(array);
+//   const c = array.includes(3);
+//   console.log(c);
+//   for (const num of array) {
+//     sum += num;
+//   }
+//   //   console.log(sum);
+//   return sum;
+// }
+
+// add(1, 2, 3, 4, 5, 6, 7);
+// add(1, 2, 3);
+// add(1, 4, 8, 6);
+
+// function add(...args) {
+//   console.log(args);
+// }
+
+// add(1, 2, 3, 4, 5, 6, 7);
+
+// console.log(check([1, 2, 3], 3));
+
+// function check(array, number) {
+//   if (array[0] === number) {
+//     return true;
+//   }
+//   if (array[1] === number) {
+//     return true;
+//   }
+//   if (array[2] === number) {
+//     return true;
+//   }
+//   return false;
+// }
+
+// console.log(check([1, 2, 3], 3));
+
+// console.log(check([1, 2, 3], 3));
+// const check = function (array, number) {
+//   if (array[0] === number) {
+//     return true;
+//   }
+//   if (array[1] === number) {
+//     return true;
+//   }
+//   if (array[2] === number) {
+//     return true;
+//   }
+//   return false;
+// };
+
+// console.log(check([1, 2, 3], 3));
+// console.log(a);
+// const a = 1;
+// console.log(a);
+
+// const a = 5;
+
+// function log() {
+//   //   const a = 6;
+//   console.log(a);
+// }
+
+// // console.log(a);
+// log();
+
+// const a = 5;
+// // console.log(a);
+// function log() {
+//   const a = 6;
+//   console.log(a);
+//   if (6 === 6) {
+//     const a = 7;
+//     // console.log(a);
+//     if (5 > 4) {
+//       const a = 8;
+//       console.log(a);
+//     }
 //   }
 // }
 
-// for (let i = 0; i <= 15; i += 1) {
-//   if (i / 3 === 4 || i / 3 === 5) {
-//     continue;
-//   }
-//   console.log(i);
+// console.log(a);
+// // log();
+
+// function bar() {
+//   console.log("bar");
 // }
 
-// You need to calculate amount of tip to give in a restaurant/cafe.
-// 	Workflow:
-// 1.	User inputs check summ. (Use “prompt” function).
-// 2.	User inputs tip percentage. (Use “prompt” function)
-// 3. For cancelled input show “Canceled.”
-// 4.	You need to validate the input data: both values should be numbers,  check summ can’t be
-// a negative number, percentage can’t be negative and bigger than 100.
-// 5.	If input data isn’t valid, you should show message “Invalid input data”. (Use “alert” function).
-// 6.	You need to calculate tip amount and total sum to pay.
-// 7.	Show message: (example). Use ”alert” function
-// Check summ: 200
-// Tip: 15%
-// Tip amount: 30
-// Total sum to pay:  230
+// function baz() {
+//   console.log("baz");
+//   bar();
+// }
 
-// const summ = prompt("Input check summ, please");
-// const percentage = prompt("Input  percentage, please");
-// console.log(summ, percentage);
+// function foo() {
+//   console.log("foo");
+//   baz();
+// }
 
-// if (summ === null || percentage === null) {
-//   alert("Canceled");
-// } else {
-//   const parsedSumm = Number.parseFloat(summ);
-//   const parsedPercentage = Number.parseFloat(percentage);
-//   console.log(parsedSumm, parsedPercentage);
-//   if (
-//     Number.isNaN(parsedSumm) ||
-//     Number.isNaN(parsedPercentage) ||
-//     parsedSumm < 0 ||
-//     parsedPercentage < 0 ||
-//     parsedPercentage > 100
-//   ) {
-//     alert("Invalid data");
+// foo();
+// // bar();
+// // baz();
+// // foo();
+
+// console.log(typeof foo);
+
+// const user = {
+//   name: "Ivan",
+//   age: 20,
+//   sex: "male",
+//   hasJob: true,
+//   hobbies: ["tourisrm", "music", "sport"],
+//   stats: {
+//     followers: 5603,
+//     views: 4827,
+//     likes: 1308,
+//   },
+// };
+
+// console.log(user.name);
+// console.log(user["name"]);
+// console.log(user.stats.likes);
+// console.log(user.hobbies[0]);
+
+// const userHobbies = user.hobbies;
+// console.log(userHobbies);
+
+// const a = "hasJob";
+// console.log(user[a]);
+// console.log(user.a);
+
+// user.age = 21;
+// console.log(user);
+// user[a] = false;
+// console.log(user);
+// user.hobbies.pop();
+// console.log(user);
+
+// console.log(user.hasCar);
+// user.hasCar = true;
+// console.log(user);
+// console.log(user.hasCar);
+
+// const subject = "html";
+// const isPassed = false;
+
+// const course = {
+//   subject: subject,
+//   isPassed: isPassed,
+// };
+
+// const course = {
+//   subject,
+//   isPassed,
+// };
+
+// user.course = course;
+
+// console.log(user);
+
+// const a = "skills";
+
+// user[a] = [];
+
+// console.log(user);
+
+// const array = ["stats", "likes", "followers", "comments", "posts"];
+// const userData = {};
+// // const a = array[0];
+// // userData[a] = [];
+// // console.log(userData);
+
+// for (const item of array) {
+//   userData[item] = [];
+// }
+
+// // for (let i = 0; i < array.length; i += 1) {
+// //   userData[array[i]] = [];
+// // }
+
+// // userData["stats"] = [];
+// // userData["likes"] = [];
+// userData["followers"] = [];
+// // userData["comments"] = [];
+// // userData["posts"] = [];
+// const a = ["Mike", "Anton", "Anna", "Olha", "Alona"];
+
+// for (const name of a) {
+//   userData.followers.push(name);
+// }
+
+// console.log(userData);
+
+// const student = {
+//   name: "John",
+//   email: "user@gmail.com",
+//   homeworkResults: [],
+//   getName() {
+//     console.log(this.name);
+//   },
+//   getEmail() {
+//     console.log(this.email);
+//   },
+//   getHMResults() {
+//     console.log(this.homeworkResults);
+//   },
+//   addHMResults(topic, success) {
+//     const subject = { topic, success };
+//     this.homeworkResults.push(subject);
+//   },
+// };
+
+// // student.getName();
+// student.addHMResults("HTML", true);
+// // student.getHMResults();
+// student.addHMResults("CSS", true);
+// // student.getHMResults();
+// student.addHMResults("JS", false);
+// // student.getHMResults();
+// console.log(student.homeworkResults[0].topic); // 'HTML';
+
+// const results = student.homeworkResults;
+// for (const item of results) {
+//   console.log(item);
+//   if (item.topic === "HTML") {
+//     console.log(item.success);
+//   }
+// }
+
+// const user = {
+//   name: "Ivan",
+//   age: 20,
+//   sex: "male",
+//   hasJob: true,
+//   hobbies: ["tourisrm", "music", "sport"],
+//   stats: {
+//     followers: 5603,
+//     views: 4827,
+//     likes: 1308,
+//   },
+// };
+
+// const keys = Object.keys(user);
+// console.log(keys);
+// const values = Object.values(user);
+// console.log(values);
+// const entries = Object.entries(user);
+// console.log(entries);
+
+// const keys = Object.keys(student);
+// console.log(keys);
+// const values = Object.values(student);
+// console.log(values);
+// const entries = Object.entries(student);
+// console.log(entries);
+
+// for (const item of keys) {
+//   console.log(item);
+//   console.log(user[item]);
+// }
+
+// const user = {
+//   name: "Ivan",
+//   age: 20,
+//   sex: "male",
+//   hasJob: true,
+//   hobbies: ["tourisrm", "music", "sport"],
+//   stats: {
+//     followers: 5603,
+//     views: 4827,
+//     likes: 1308,
+//   },
+// };
+
+// const keys = Object.keys(user);
+// for (const item of keys) {
+//   console.log(item);
+//   console.log(user[item]);
+// }
+
+// for (const item in user) {
+//   console.log(item);
+//   console.log(user[item]);
+// }
+
+// const animal = {
+//   legs: 4,
+// };
+
+// console.log(animal);
+
+// const dog = Object.create(animal);
+// console.log(dog);
+
+// dog.eyes = 2;
+
+// console.log(dog);
+
+// console.log(animal.legs);
+// console.log(dog.legs);
+// console.log(dog.eyes);
+// console.log(dog.hasOwnProperty("eyes")); // true
+// console.log(dog.hasOwnProperty("legs")); // false
+
+// console.log(animal.hasOwnProperty("eyes")); // false
+// // console.log(animal.eyes);
+// console.log(animal.hasOwnProperty("legs")); // true
+
+// for (const key in dog) {
+//   // Якщо це власна властивість - виконуємо тіло if
+//   if (dog.hasOwnProperty(key)) {
+//     console.log(key);
+//     console.log(dog[key]);
+//   }
+//   // Якщо це невласна властивість - нічого не робимо
+// }
+
+// const array1 = [1, 2, 3];
+// const array2 = [...array1];
+// const a = array2.splice(1, 2, 3, 5);
+// // console.log(array1);
+// // console.log(array2);
+// const array3 = array1.concat(array2, "12345");
+// console.log(array3);
+// const array4 = [...array1, ...array2, "qwerty"];
+// console.log(array4);
+
+// const car1 = {
+//   color: "red",
+//   model: "sedan",
+//   weight: 1500,
+//   name: "Ford",
+// };
+
+// const car2 = {
+//   color: "blue",
+//   model: "sedan",
+//   name: "Ford",
+//   maxSpeed: 220,
+// };
+
+// const car3 = { ...car1, ...car2, transBox: "auto" };
+
+// console.log(car3);
+
+// const add = function () {
+//   console.log(arguments);
+//   const array = Array.from(arguments);
+//   console.log(array);
+//   let sum = 0;
+//   for (const num of array) {
+//     sum += num;
+//   }
+//   return sum;
+// };
+
+// const add = function (...array) {
+//   // console.log(arguments);
+//   // const array = Array.from(arguments);
+//   console.log(array);
+//   let sum = 0;
+//   for (const num of array) {
+//     sum += num;
+//   }
+//   return sum;
+// };
+
+// console.log(add(1, 4, 7, 4, 9));
+
+// const add = function (...array) {
+//   console.log(array);
+//   const lastEl = array[array.length - 1];
+//   // console.log(lastEl);
+//   const num = array.pop();
+//   console.log(array);
+//   if (array.includes(lastEl)) {
+//     return true;
 //   } else {
-//     const tipAmount = Number(
-//       ((parsedSumm * parsedPercentage) / 100).toFixed(2)
-//     );
-//     const totalSumm = (parsedSumm + tipAmount).toFixed(2);
-//     const message = `
-//     Check summ: ${parsedSumm}
-//     Tip: ${parsedPercentage}%
-//     Tip amount: ${tipAmount}
-//     Total sum to pay:  ${totalSumm}`;
-//     alert(message);
+//     return false;
 //   }
+//   return array.includes(num);
+// };
+
+// const add = function (num1, ...array) {
+//   console.log(num1);
+//   console.log(array);
+//   return array.includes(num1)
+// };
+
+// console.log(add(1, 1, 7, 4, 7));
+
+// const add = function (a, b, ...args) {
+//   console.log(a);
+//   console.log(b);
+//   console.log(args);
+// };
+
+// console.log(add(1, 5, 7, 4, 7, 4, 3));
+
+// const car1 = {
+//   color: "red",
+//   model: "sedan",
+//   weight: 1500,
+//   name: "Ford",
+// };
+
+// const car2 = {
+//   color: "red",
+//   model: "sedan",
+//   weight: 1500,
+//   name: "Ford",
+//   maxSpeed: 220,
+//   // transBox: "auto",
+// };
+
+// const {
+//   color = "No info",
+//   model = "No info",
+//   weight = "No info",
+//   name = "No info",
+//   maxSpeed = "No info",
+//   transBox = "No info",
+// } = car1;
+
+// console.log(color);
+// console.log(car.color);
+// console.log(transBox);
+
+// function makeMessage(obj) {
+//   const {
+//     color = "No info",
+//     model = "No info",
+//     weight = "No info",
+//     name = "No info",
+//     maxSpeed = "No info",
+//     transmissionBox = "No info",
+//     a: transBox = "No info",
+//   } = obj;
+//   const message = `
+// Color: ${color}.
+// Model: ${model}.
+// Weight: ${weight}.
+// Name: ${name}.
+// MaxSpeed: ${maxSpeed}.
+// TransBox: ${transmissionBox !== "No info" ? transmissionBox : transBox}.
+//   `;
+//   console.log(message);
 // }
+
+// const car2 = {
+//   color: "red",
+//   model: "sedan",
+//   weight: 1500,
+//   name: "Ford",
+//   maxSpeed: 220,
+//   a: "auto",
+// };
+// makeMessage(car2);
+
+// const firstBook = {
+//   title: "The Last Kingdom",
+//   // coverImage:
+//   //   "https://images-na.ssl-images-amazon.com/images/I/51b5YG6Y1rL.jpg",
+// };
+
+// const {
+//   title: firstTitle,
+//   coverImage: firstCoverImage = "https://via.placeholder.com/640/480",
+// } = firstBook;
+
+// console.log(firstTitle); // The Last Kingdom
+// console.log(firstCoverImage); // https://images-na.ssl-images-amazon.com/images/I/51b5YG6Y1rL.jpg
+
+// const numbers = [200, 255, 100];
+// console.log(numbers[1]);
+// const [one, two, three] = numbers;
+// console.log(three);
+
+// const numbers = [200, 255, 100];
+// let one, two, three;
+// console.log(two);
+// [one, two, three] = numbers;
+
+// const numbers = [200, 255, 100];
+// const [one, two, three, four = 500] = numbers;
+// console.log(four);
+
+// const numbers = [200, 255, 100, 5, 45, 34, 78, 34, 456];
+// const [one, two, three, ...array] = numbers;
+// console.log(array);
+
+// const numbers = [200, 255, 100, 5, 45, 34, 78, 34, 456];
+// const [, , three, ...array] = numbers;
+// console.log(three);
+
+// function makeMessage(
+//   color,
+//   model,
+//   weight,
+//   name,
+//   maxSpeed,
+//   transmissionBox = "No info"
+// ) {
+//   const message = `
+// Color: ${color}.
+// Model: ${model}.
+// Weight: ${weight}.
+// Name: ${name}.
+// MaxSpeed: ${maxSpeed}.
+// TransBox: ${transmissionBox}.
+//   `;
+//   console.log(message);
+// }
+
+// makeMessage("red", "sedan", 1500, "Ford", 220);
