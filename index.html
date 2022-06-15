@@ -5,6 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+        <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./styles.css">
   </head>
   <body>
@@ -25,14 +29,14 @@
     <section>
       <h3>Subtitle</h3>
     </section> -->
-<div>Div</div>
+<!-- <div>Div</div>
 <button type="button">123</button>
 <form>
   <input type="text" name="q">
   <input type="text" name="w">
   <input type="text" >
   <button>Submit</button>
-</form>
+</form> -->
 <!-- 
 <form>
   <label>Title<input type="text" name="title"></label>
@@ -43,12 +47,80 @@
 </form> -->
 <!-- <input type="text" class="test"> -->
 
-<div id="counter">
+<!-- <div id="counter">
   <button type="button" data-action="decrement">-1</button>
   <span id="value">0</span>
   <button type="button" data-action="increment">+1</button>
 </div>
-<a href="./library/library.html">Link</a>
+<a href="./library/library.html">Link</a> -->
+    <ul class="gallery js-gallery">
+      <li class="gallery__item">
+    <a
+      class="gallery__link"
+      href="https://cdn.pixabay.com/photo/2015/07/31/06/50/forest-868715_1280.jpg"
+    >
+      <img
+        class="gallery__image"
+        src = "https://cdn.pixabay.com/photo/2015/07/31/06/50/forest-868715__340.jpg"
+        data-source="https://cdn.pixabay.com/photo/2015/07/31/06/50/forest-868715_1280.jpg"
+        alt="Forrest"
+      />
+  
+      <span class="gallery__icon">
+        <i class="material-icons">zoom_out_map</i>
+      </span>
+    </a>
+    </li>
+    <li class="gallery__item">
+        <a
+      class="gallery__link"
+      href="https://cdn.pixabay.com/photo/2017/12/29/18/47/nature-3048299_1280.jpg"
+    >
+      <img
+        class="gallery__image"
+        src = "https://cdn.pixabay.com/photo/2017/12/29/18/47/nature-3048299__340.jpg"
+        data-source="https://cdn.pixabay.com/photo/2017/12/29/18/47/nature-3048299_1280.jpg"
+        alt="Sky"
+      />
+  
+      <span class="gallery__icon">
+        <i class="material-icons">zoom_out_map</i>
+      </span>
+    </a>
+    </li>
+    <li class="gallery__item">
+        <a
+      class="gallery__link"
+      href="https://cdn.pixabay.com/photo/2018/01/14/23/12/nature-3082832_1280.jpg"
+    >
+      <img
+        class="gallery__image"
+        src = "https://cdn.pixabay.com/photo/2018/01/14/23/12/nature-3082832__340.jpg"
+        data-source="https://cdn.pixabay.com/photo/2018/01/14/23/12/nature-3082832_1280.jpg"
+        alt="Nature"
+      />
+  
+      <span class="gallery__icon">
+        <i class="material-icons">zoom_out_map</i>
+      </span>
+    </a>
+    </li>
+</ul>
+    <div class="lightbox js-lightbox">
+      <div class="lightbox__overlay"></div>
+
+      <div class="lightbox__content">
+        <img class="lightbox__image" src="" alt="" />
+      </div>
+
+      <button
+        type="button"
+        class="lightbox__button"
+        data-action="close-lightbox"
+      >
+        <i class="material-icons">close</i>
+      </button>
+    </div>
     <script src="./js/index.js" type="module"></script>
     <script src="./js/users.js"></script>
     <script src="./js/context.js" type="module"></script>

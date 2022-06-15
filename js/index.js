@@ -121,10 +121,50 @@
 //     console.log(event.target.value)
 // })
 
-const form = document.querySelector('form')
-form.addEventListener('submit', handler)
+// const form = document.querySelector('form')
+// form.addEventListener('submit', handler)
 
-function handler(e) {
-    e.preventDefault()
-    console.log(e)
+// function handler(e) {
+//     e.preventDefault()
+//     console.log(e)
+// }
+
+const list = document.querySelector(".js-gallery");
+const modalImg = document.querySelector(".lightbox__image");
+const modal = document.querySelector(".lightbox");
+const button = document.querySelector(".lightbox__button");
+
+list.addEventListener("click", openModal);
+
+function openModal(event) {
+  event.preventDefault();
+  if (!event.target.classList.contains("gallery__image")) {
+    return;
+  }
+  const bigImg = event.target.dataset.source;
+  const alt = event.target.alt;
+  modalImg.src = bigImg;
+  modalImg.alt = alt;
+  modal.classList.add("is-open");
+  window.addEventListener("keydown", closeModalEsc);
+}
+
+button.addEventListener("click", closeModal);
+modal.addEventListener("click", (event) => {
+  if (!event.target.classList.contains("lightbox__image")) {
+    closeModal();
+  }
+});
+
+function closeModal() {
+  modal.classList.remove("is-open");
+  modalImg.src = "";
+  modalImg.alt = "";
+  window.removeEventListener("keydown", closeModalEsc);
+}
+
+function closeModalEsc(event) {
+  if (event.key === "Escape") {
+    closeModal();
+  }
 }
