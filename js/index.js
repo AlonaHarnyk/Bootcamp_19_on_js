@@ -129,42 +129,52 @@
 //     console.log(e)
 // }
 
-const list = document.querySelector(".js-gallery");
-const modalImg = document.querySelector(".lightbox__image");
-const modal = document.querySelector(".lightbox");
-const button = document.querySelector(".lightbox__button");
+// const list = document.querySelector(".js-gallery");
+// const modalImg = document.querySelector(".lightbox__image");
+// const modal = document.querySelector(".lightbox");
+// const button = document.querySelector(".lightbox__button");
 
-list.addEventListener("click", openModal);
+// list.addEventListener("click", openModal);
 
-function openModal(event) {
-  event.preventDefault();
-  if (!event.target.classList.contains("gallery__image")) {
-    return;
-  }
-  const bigImg = event.target.dataset.source;
-  const alt = event.target.alt;
-  modalImg.src = bigImg;
-  modalImg.alt = alt;
-  modal.classList.add("is-open");
-  window.addEventListener("keydown", closeModalEsc);
-}
+// function openModal(event) {
+//   event.preventDefault();
+//   if (!event.target.classList.contains("gallery__image")) {
+//     return;
+//   }
+//   const bigImg = event.target.dataset.source;
+//   const alt = event.target.alt;
+//   modalImg.src = bigImg;
+//   modalImg.alt = alt;
+//   modal.classList.add("is-open");
+//   window.addEventListener("keydown", closeModalEsc);
+// }
 
-button.addEventListener("click", closeModal);
-modal.addEventListener("click", (event) => {
-  if (!event.target.classList.contains("lightbox__image")) {
-    closeModal();
-  }
-});
+// button.addEventListener("click", closeModal);
+// modal.addEventListener("click", (event) => {
+//   if (!event.target.classList.contains("lightbox__image")) {
+//     closeModal();
+//   }
+// });
 
-function closeModal() {
-  modal.classList.remove("is-open");
-  modalImg.src = "";
-  modalImg.alt = "";
-  window.removeEventListener("keydown", closeModalEsc);
-}
+// function closeModal() {
+//   modal.classList.remove("is-open");
+//   modalImg.src = "";
+//   modalImg.alt = "";
+//   window.removeEventListener("keydown", closeModalEsc);
+// }
 
-function closeModalEsc(event) {
-  if (event.key === "Escape") {
-    closeModal();
-  }
-}
+// function closeModalEsc(event) {
+//   if (event.key === "Escape") {
+//     closeModal();
+//   }
+// }
+
+// const input = document.querySelector('.lodash')
+
+// // input.addEventListener('input', _.throttle((evt) => console.log(evt.target.value), 500))
+
+// input.addEventListener('input', _.debounce((evt) => console.log(evt.target.value), 1000,
+//     {
+//       leading: true,
+//       trailing: false,
+//     }))

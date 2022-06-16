@@ -30,7 +30,7 @@ html {
   
   .gallery {
     display: grid;
-    width: 1200px;
+    width: 400px;
     grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
     grid-auto-rows: 240px;
     grid-gap: 12px;

@@ -83,6 +83,18 @@ function addBook() {
   const markup = createFormMarkup();
   rightDiv.innerHTML = "";
   rightDiv.insertAdjacentHTML("afterbegin", markup);
+  const newBook = {
+    id: `${Date.now()}`,
+  };
+  const form = document.querySelector("form");
+  fillObject(newBook, form);
+  form.addEventListener("submit", saveBook);
+  function saveBook(event) {
+    event.preventDefault();
+    if (Object.keys(newBook).length !== 5 || Object.values(newBook).some(value => value.trim() === '')) {
+      alert('Fill all inputs, please')
+    }
+  }
 }
 
 function createFormMarkup() {
@@ -91,6 +103,16 @@ function createFormMarkup() {
   <label>Author<input  type="text" name="author"></label>
   <label>Image<input  type="text" name="img"></label>
   <label>Plot<input  type="text" name="plot"></label>
-  <button>Save</button>
+  <button class="save">Save</button>
 </form>`;
+}
+
+function fillObject(book, form) {
+  const data = [...form.elements]
+  console.log(data)
+  data.forEach((input) =>
+    input.addEventListener("change", (event) => {
+      book[event.target.name] = event.target.value;
+    })
+  );
 }
