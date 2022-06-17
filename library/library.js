@@ -1,4 +1,4 @@
-const books = [
+let books = [
   {
     id: "1",
     title: `Apple. Эволюция компьютера`,
@@ -56,12 +56,14 @@ function renderBooksList() {
   const markup = books
     .map(
       ({ title, id }) =>
-        `<li id=${id}><p class='title'>${title}</p><button>Delete</button><button>Edit</button></li>`
+        `<li id=${id}><p class='title'>${title}</p><button class='delete'>Delete</button><button>Edit</button></li>`
     )
     .join("");
   booksList.insertAdjacentHTML("afterbegin", markup);
   const bookTitles = document.querySelectorAll(".title");
   bookTitles.forEach((elem) => elem.addEventListener("click", renderPreview));
+  const deleteButtons = document.querySelectorAll(".delete");
+  deleteButtons.forEach((elem) => elem.addEventListener("click", deleteBook));
 }
 
 renderBooksList();
@@ -73,8 +75,8 @@ function renderPreview(event) {
   rightDiv.insertAdjacentHTML("afterbegin", markup);
 }
 
-function createPreviewMarkup({ title, author, img, plot }) {
-  return `<h2>${title}</h2><p>${author}</p><img src="${img}" alt='${title}'><p>${plot}</p>`;
+function createPreviewMarkup({ title, author, img, plot, id }) {
+  return `<div id=${id}><h2>${title}</h2><p>${author}</p><img src="${img}" alt='${title}'><p>${plot}</p></div>`;
 }
 
 addButton.addEventListener("click", addBook);
@@ -89,11 +91,23 @@ function addBook() {
   const form = document.querySelector("form");
   fillObject(newBook, form);
   form.addEventListener("submit", saveBook);
+
   function saveBook(event) {
     event.preventDefault();
-    if (Object.keys(newBook).length !== 5 || Object.values(newBook).some(value => value.trim() === '')) {
-      alert('Fill all inputs, please')
+    if (
+      Object.keys(newBook).length !== 5 ||
+      Object.values(newBook).some((value) => value.trim() === "")
+    ) {
+      alert("Fill all inputs, please");
+      return
     }
+    form.reset();
+    books.push(newBook);
+    booksList.innerHTML = "";
+    renderBooksList();
+    const markup = createPreviewMarkup(newBook);
+    rightDiv.innerHTML = "";
+    rightDiv.insertAdjacentHTML("afterbegin", markup);
   }
 }
 
@@ -108,11 +122,21 @@ function createFormMarkup() {
 }
 
 function fillObject(book, form) {
-  const data = [...form.elements]
-  console.log(data)
+  const data = [...form.elements];
   data.forEach((input) =>
     input.addEventListener("change", (event) => {
       book[event.target.name] = event.target.value;
     })
   );
+}
+
+function deleteBook(event) {
+  const filteredBooks = books.filter(elem => elem.id !== event.target.parentNode.id)
+  books = filteredBooks
+  booksList.innerHTML = "";
+  renderBooksList();
+  console.log(rightDiv.firstElementChild)
+  if (rightDiv.firstElementChild && event.target.parentNode.id === rightDiv.firstElementChild.id) {
+    rightDiv.innerHTML = '';
+  }
 }
