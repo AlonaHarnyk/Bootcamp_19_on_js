@@ -1,4 +1,4 @@
-let books = [
+let initialData = [
   {
     id: "1",
     title: `Apple. Эволюция компьютера`,
@@ -39,6 +39,17 @@ let books = [
   },
 ];
 
+
+// const dataFromLS = localStorage.getItem("books")
+// console.log(dataFromLS)
+// if (dataFromLS === null) {
+//   localStorage.setItem("books", JSON.stringify(books));
+// }
+
+if (!localStorage.getItem("books")) {
+  localStorage.setItem("books", JSON.stringify(initialData));
+}
+
 const root = document.querySelector("#root");
 const leftDiv = document.createElement("div");
 const rightDiv = document.createElement("div");
@@ -53,6 +64,7 @@ addButton.textContent = "ADD BOOK";
 leftDiv.append(mainTitle, booksList, addButton);
 
 function renderBooksList() {
+  const books = JSON.parse(localStorage.getItem("books"));
   const markup = books
     .map(
       ({ title, id }) =>
@@ -69,6 +81,7 @@ function renderBooksList() {
 renderBooksList();
 
 function renderPreview(event) {
+  const books = JSON.parse(localStorage.getItem("books"));
   const book = books.find(({ title }) => title === event.target.textContent);
   const markup = createPreviewMarkup(book);
   rightDiv.innerHTML = "";
@@ -99,10 +112,12 @@ function addBook() {
       Object.values(newBook).some((value) => value.trim() === "")
     ) {
       alert("Fill all inputs, please");
-      return
+      return;
     }
     form.reset();
+    const books = JSON.parse(localStorage.getItem('books'))
     books.push(newBook);
+    localStorage.setItem('books', JSON.stringify(books))
     booksList.innerHTML = "";
     renderBooksList();
     const markup = createPreviewMarkup(newBook);
@@ -131,12 +146,17 @@ function fillObject(book, form) {
 }
 
 function deleteBook(event) {
-  const filteredBooks = books.filter(elem => elem.id !== event.target.parentNode.id)
-  books = filteredBooks
+  const books = JSON.parse(localStorage.getItem('books'))
+  const filteredBooks = books.filter(
+    (elem) => elem.id !== event.target.parentNode.id
+  );
+  localStorage.setItem('books', JSON.stringify(filteredBooks))
   booksList.innerHTML = "";
   renderBooksList();
-  console.log(rightDiv.firstElementChild)
-  if (rightDiv.firstElementChild && event.target.parentNode.id === rightDiv.firstElementChild.id) {
-    rightDiv.innerHTML = '';
+  if (
+    rightDiv.firstElementChild &&
+    event.target.parentNode.id === rightDiv.firstElementChild.id
+  ) {
+    rightDiv.innerHTML = "";
   }
 }

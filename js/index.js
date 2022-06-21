@@ -1,180 +1,47 @@
-// const firstDiv = document.querySelector('div')
-// console.log(firstDiv)
-// const secondDiv = document.querySelector('.root')
-// console.log(secondDiv)
-// const thirdDiv = document.querySelector('#root')
-// console.log(thirdDiv)
-// const thirdDiv2 = document.getElementById('root')
-// console.log(thirdDiv2)
-
-// const divs = document.querySelectorAll('div')
-// console.log(divs)
-
-// // divs.forEach(elem => elem.textContent = 'superdiv')
-
-// const a = document.querySelector('.root')
-// const res = a.classList.contains('root')
-// console.log(res)
-// if (res) {
-//     a.classList.remove('root')
+const dog = {
+  name: "Mango",
+  age: 3,
+  isHappy: true,
+  bark() {
+    console.log("Woof!");
+  },
+};
+// console.log(dog)
+// const dogJSON = JSON.stringify(dog);
+// // console.log(dogJSON); // "{"name":"Mango","age":3,"isHappy":true}"
+// // console.log(JSON.parse(dogJSON))
+// let data = 5
+// try {
+//     data = JSON.parse(dog);
+//     console.log(10)
+// } catch (error) {
+//   console.log(error.name); // "SyntaxError"
+// //   console.log(error.message); // Unexpected token W in JSON at position 0
 // }
 
-// a.classList.add('qwerty')
+// console.log(data)
 
-// firstDiv.style.width = '400px'
-// firstDiv.style.height = '400px'
-// firstDiv.style.backgroundColor = 'red'
-
-// const img = document.querySelector('img')
-
-// const paragraph = document.querySelector('.text')
-// console.log(paragraph)
-
-// const item1 = document.querySelector('.item1')
-// console.log(item1)
-
-// const paragraph = item1.querySelector('.text')
-// console.log(paragraph)
-
-// const title = document.createElement('h1')
-// const title2 = document.createElement('h1')
-// const span = document.createElement('span')
-// title.textContent = 'Hello!'
-// span.textContent = 'span'
-// title.classList.add('title')
-// console.log(title)
-
-// firstDiv.append(title, span)
-// secondDiv.append(title2)
-// title2.remove()
-
-// console.log(firstDiv.innerHTML)
-// firstDiv.innerHTML = '<h2 class="second">Test!</h2>'
-// // const secondTitle = firstDiv.querySelector('h2').classList.add('second')
-// firstDiv.innerHTML = '<p>Text</p>'
-
-// const list = document.querySelector('ul')
-// list.innerHTML = ''
-
-// const section = document.querySelector('section')
-// section.insertAdjacentHTML('beforeend', '<p>Text</p>')
-
-// const btn = document.querySelector('button')
-// btn.addEventListener('click', a)
-
-// function a(a, b = 1) {
-//     console.log(a)
-//     console.log(b)
+// function a {
+// console.log(123)
 // }
 
-// const div = document.querySelector('div')
-// div.addEventListener('click', logger)
+// localStorage.setItem("ui-theme", "light");
+// localStorage.setItem("sidebar", "expanded");
+// localStorage.setItem("notification-level", "mute");
+// localStorage.setItem("ui-theme", "red");
 
-// function logger() {
-//     console.log('Interactive div')
-// }
+// console.log(localStorage.getItem("ui-theme"));
 
-// const btn = document.querySelector('button')
+// localStorage.setItem('animal', JSON.stringify(dog))
+// const data = localStorage.getItem('animal')
+// console.log(JSON.parse(data))
+// localStorage.removeItem('animal')
+// localStorage.clear();\
+// localStorage.setItem('a', 'hello')
 
-// btn.addEventListener('click', a)
+// const a = localStorage.getItem('a')
+// console.log(a)
 
-// function a() {
-//     console.log(this)
-// }
+// const b = a + ' ' + 'world'
 
-// const form = document.querySelector('form')
-// form.addEventListener('submit', handler)
-
-// function handler(e) {
-//     e.preventDefault()
-//     console.log(123)
-// }
-
-// const link = document.querySelector('a')
-// link.addEventListener('click', block)
-
-// function block(event) {
-//     event.preventDefault()
-
-// }
-
-// window.addEventListener('keydown', (event) => {
-//     console.log(event)
-//     if (event.key === 'o') {
-//         console.log('o')
-//     }
-// })
-
-// const a = document.querySelector('.test')
-// input.addEventListener('change', (event) => {
-//     console.log(event)
-//     // console.log(event.target)
-//     console.log(event.target.value)
-// })
-// input.addEventListener('blur', (event) => {
-//     // console.log(event)
-//     // console.log(event.target)
-//     console.log('qwerty')
-// })
-
-// a.addEventListener('input', (event) => {
-//     console.log(event.target.value)
-// })
-
-// const form = document.querySelector('form')
-// form.addEventListener('submit', handler)
-
-// function handler(e) {
-//     e.preventDefault()
-//     console.log(e)
-// }
-
-// const list = document.querySelector(".js-gallery");
-// const modalImg = document.querySelector(".lightbox__image");
-// const modal = document.querySelector(".lightbox");
-// const button = document.querySelector(".lightbox__button");
-
-// list.addEventListener("click", openModal);
-
-// function openModal(event) {
-//   event.preventDefault();
-//   if (!event.target.classList.contains("gallery__image")) {
-//     return;
-//   }
-//   const bigImg = event.target.dataset.source;
-//   const alt = event.target.alt;
-//   modalImg.src = bigImg;
-//   modalImg.alt = alt;
-//   modal.classList.add("is-open");
-//   window.addEventListener("keydown", closeModalEsc);
-// }
-
-// button.addEventListener("click", closeModal);
-// modal.addEventListener("click", (event) => {
-//   if (!event.target.classList.contains("lightbox__image")) {
-//     closeModal();
-//   }
-// });
-
-// function closeModal() {
-//   modal.classList.remove("is-open");
-//   modalImg.src = "";
-//   modalImg.alt = "";
-//   window.removeEventListener("keydown", closeModalEsc);
-// }
-
-// function closeModalEsc(event) {
-//   if (event.key === "Escape") {
-//     closeModal();
-//   }
-// }
-
-// const input = document.querySelector('.lodash')
-
-// // input.addEventListener('input', _.throttle((evt) => console.log(evt.target.value), 500))
-
-// input.addEventListener('input', _.debounce((evt) => console.log(evt.target.value), 1000,
-//     {
-//       leading: true,
-//       trailing: false,
-//     }))
+// localStorage.setItem('a', b)
