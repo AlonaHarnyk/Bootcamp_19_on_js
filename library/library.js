@@ -39,7 +39,6 @@ let initialData = [
   },
 ];
 
-
 // const dataFromLS = localStorage.getItem("books")
 // console.log(dataFromLS)
 // if (dataFromLS === null) {
@@ -68,7 +67,7 @@ function renderBooksList() {
   const markup = books
     .map(
       ({ title, id }) =>
-        `<li id=${id}><p class='title'>${title}</p><button class='delete'>Delete</button><button>Edit</button></li>`
+        `<li id=${id}><p class='title'>${title}</p><button class='delete'>Delete</button><button class='edit'>Edit</button></li>`
     )
     .join("");
   booksList.insertAdjacentHTML("afterbegin", markup);
@@ -76,6 +75,8 @@ function renderBooksList() {
   bookTitles.forEach((elem) => elem.addEventListener("click", renderPreview));
   const deleteButtons = document.querySelectorAll(".delete");
   deleteButtons.forEach((elem) => elem.addEventListener("click", deleteBook));
+  const editButtons = document.querySelectorAll(".edit");
+  editButtons.forEach((elem) => elem.addEventListener("click", editBook));
 }
 
 renderBooksList();
@@ -115,9 +116,9 @@ function addBook() {
       return;
     }
     form.reset();
-    const books = JSON.parse(localStorage.getItem('books'))
+    const books = JSON.parse(localStorage.getItem("books"));
     books.push(newBook);
-    localStorage.setItem('books', JSON.stringify(books))
+    localStorage.setItem("books", JSON.stringify(books));
     booksList.innerHTML = "";
     renderBooksList();
     const markup = createPreviewMarkup(newBook);
@@ -146,11 +147,11 @@ function fillObject(book, form) {
 }
 
 function deleteBook(event) {
-  const books = JSON.parse(localStorage.getItem('books'))
+  const books = JSON.parse(localStorage.getItem("books"));
   const filteredBooks = books.filter(
     (elem) => elem.id !== event.target.parentNode.id
   );
-  localStorage.setItem('books', JSON.stringify(filteredBooks))
+  localStorage.setItem("books", JSON.stringify(filteredBooks));
   booksList.innerHTML = "";
   renderBooksList();
   if (
@@ -159,4 +160,10 @@ function deleteBook(event) {
   ) {
     rightDiv.innerHTML = "";
   }
+}
+
+function editBook(event) {
+  const books = JSON.parse(localStorage.getItem('books'));
+  const book = books.find(book => book.id === event.target.parentNode.id)
+  console.log(book)
 }

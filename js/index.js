@@ -245,3 +245,123 @@
 // //  */
 // toggleUserState(users, "Mango").then(logger);
 // toggleUserState(users, "Lux").then(logger);
+
+// Third variant
+
+// const users = [
+//   { name: "Mango", active: true },
+//   { name: "Poly", active: false },
+//   { name: "Ajax", active: true },
+//   { name: "Lux", active: false },
+// ];
+
+// const toggleUserState = (allUsers, userName) => {
+//   const updatedUsers = allUsers.map((user) =>
+//     user.name === userName ? { ...user, active: !user.active } : user
+//   );
+
+//   return Promise.resolve(updatedUsers);
+// };
+
+// const logger = (updatedUsers) => console.table(updatedUsers);
+// // /*
+// //  * Должно работать так
+// //  */
+// toggleUserState(users, "Mango").then(logger);
+// toggleUserState(users, "Lux").then(logger);
+
+// Перепиши функцию makeTransaction() так, чтобы она не использовала callback - функции onSuccess и onError,
+//     а принимала всего один параметр transaction и возвращала промис.
+
+// First variant
+
+// const randomIntegerFromInterval = (min, max) => {
+//   return Math.floor(Math.random() * (max - min + 1) + min);
+// };
+
+// const makeTransaction = (transaction, onSuccess, onError) => {
+//   const delay = randomIntegerFromInterval(200, 500);
+
+//   setTimeout(() => {
+//     const canProcess = Math.random() > 0.3;
+
+//     if (canProcess) {
+//       onSuccess(transaction.id, delay);
+//     } else {
+//       onError(transaction.id);
+//     }
+//   }, delay);
+// };
+
+// const logSuccess = (id, time) => {
+//   console.log(`Transaction ${id} processed in ${time}ms`);
+// };
+
+// const logError = id => {
+//   console.warn(`Error processing transaction ${id}. Please try again later.`);
+// };
+
+/*
+ * Работает так
+ */
+// makeTransaction({ id: 70, amount: 150 }, logSuccess, logError);
+// makeTransaction({ id: 71, amount: 230 }, logSuccess, logError);
+// makeTransaction({ id: 72, amount: 75 }, logSuccess, logError);
+// makeTransaction({ id: 73, amount: 100 }, logSuccess, logError);
+
+// Second variant
+
+// const randomIntegerFromInterval = (min, max) => {
+//   return Math.floor(Math.random() * (max - min + 1) + min);
+// };
+
+// const makeTransaction = (transaction) => {
+//   return new Promise((resolve, reject) => {
+//     const delay = randomIntegerFromInterval(200, 500);
+//     setTimeout(() => {
+//       const canProcess = Math.random() > 0.3;
+
+//       if (canProcess) {
+//         resolve([transaction.id, delay]);
+//       } else {
+//         reject(transaction.id);
+//       }
+//     }, delay);
+//   });
+// };
+// const logSuccess = ([id, time]) => {
+//   console.log(`Transaction ${id} processed in ${time}ms`);
+// };
+
+// const logError = (id) => {
+//   console.warn(`Error processing transaction ${id}. Please try again later.`);
+// };
+
+// /*
+//  * Должно работать так
+//  */
+// makeTransaction({ id: 70, amount: 150 })
+//   .then(logSuccess)
+//   .catch(logError);
+
+// makeTransaction({ id: 71, amount: 230 })
+//   .then(logSuccess)
+//   .catch(logError);
+
+// makeTransaction({ id: 72, amount: 75 })
+//   .then(logSuccess)
+//   .catch(logError);
+
+// makeTransaction({ id: 73, amount: 100 })
+//   .then(logSuccess)
+//   .catch(logError);
+
+
+// const id = setInterval(() => {
+//     console.log(123)
+// }, 2000)
+
+// setTimeout(() => {
+//     clearInterval(id)
+// }, 5000)
+

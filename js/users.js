@@ -89,16 +89,5 @@
 
 // export default () => console.log('Hello!')
 
-// Write a function which returns a day number that was some amount of days ago from the passed date.
-// It should not change the given source date.
- 
-// const date = new Date(2020, 0, 2);
-// getPastDay(date, 1); // 1, (1 Jan 2020)
-// getPastDay(date, 2); // 31, (31 Dec 2019)
-// getPastDay(date, 365); // 2, (2 Jan 2019)
 
-// Write a function that formats a date in such format "YYYY/MM/DD HH:mm".
-
-// formatDate(new Date('6/15/2019 09:15:00')) // "2018/06/15 09:15"
-// formatDate(new Date()) // gets current local time
 
